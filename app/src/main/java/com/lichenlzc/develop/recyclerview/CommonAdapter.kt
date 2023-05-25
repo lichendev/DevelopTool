@@ -44,6 +44,16 @@ class CommonAdapter: RecyclerView.Adapter<BaseViewHolder<BaseViewItem>>() {
         return data.size
     }
 
+    override fun onViewAttachedToWindow(holder: BaseViewHolder<BaseViewItem>) {
+        super.onViewAttachedToWindow(holder)
+        holder.onAttachedToWindow()
+    }
+
+    override fun onViewDetachedFromWindow(holder: BaseViewHolder<BaseViewItem>) {
+        super.onViewDetachedFromWindow(holder)
+        holder.onDetachedFromWindow()
+    }
+
     class ViewHolderFactory(val create: (view: View)->BaseViewHolder<BaseViewItem>){
         fun createViewHolder(view: View): BaseViewHolder<BaseViewItem>{
             return create(view)
