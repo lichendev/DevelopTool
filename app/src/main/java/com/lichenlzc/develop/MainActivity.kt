@@ -3,6 +3,7 @@ package com.lichenlzc.develop
 import android.os.Bundle
 import com.lichenlzc.develop.base.BaseActivity
 import com.lichenlzc.develop.databinding.ActivityMainBinding
+import com.lichenlzc.develop.log.CLog
 
 class MainActivity: BaseActivity() {
 
@@ -11,5 +12,8 @@ class MainActivity: BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(viewBinding.root)
+        viewBinding.button.setOnClickListener {
+            CLog.d(it.toString())
+        }
     }
 }
