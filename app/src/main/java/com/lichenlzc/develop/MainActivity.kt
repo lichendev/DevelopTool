@@ -2,13 +2,18 @@ package com.lichenlzc.develop
 
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
+import androidx.core.view.updateLayoutParams
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.lichenlzc.develop.base.BaseActivity
 import com.lichenlzc.develop.databinding.ActivityMainBinding
 import com.lichenlzc.develop.databinding.VhMyBinding
+import com.lichenlzc.develop.log.CLog
 import com.lichenlzc.develop.recyclerview.BaseViewHolder
 import com.lichenlzc.develop.recyclerview.BaseViewItem
 import com.lichenlzc.develop.recyclerview.CommonAdapter
+import com.lichenlzc.develop.tool.dp2px
+import com.lichenlzc.develop.tool.getScreenHeight
 
 class MainActivity: BaseActivity() {
 
@@ -23,6 +28,9 @@ class MainActivity: BaseActivity() {
             adapter = rvAdapter
             layoutManager = LinearLayoutManager(this@MainActivity)
         }
+        viewBinding.recyvlerView.updateLayoutParams {
+            height = getScreenHeight()
+        }
         rvAdapter.addItems(listOf(
             MyVI("00000000000000000000000"),
             MyVI("111111111111111111111"),
@@ -35,21 +43,26 @@ class MainActivity: BaseActivity() {
             MyVI("8888888888888888888888"),
             MyVI("9"),
             MyVI("10"),
-            MyVI("11"),
-            MyVI("加快了等方式尽快立法解释的离开"),
-            MyVI("对方是否开了个"),
-            MyVI("加快了等方式尽快立法解释的离开"),
-            MyVI("对方是否开了个"),
-            MyVI("加快了等方式尽快立法解释的离开"),
-            MyVI("对方是否开了个"),
-            MyVI("加快了等方式尽快立法解释的离开"),
-            MyVI("对方是否开了个"),
-            MyVI("加快了等方式尽快立法解释的离开"),
-            MyVI("对方是否开了个"),
+            MyVI("555555555555555555555555"),
+            MyVI("66666666666666666"),
+            MyVI("777777777777777"),
+            MyVI("8888888888888888888888"),
+            MyVI("9"),
+            MyVI("10"),
         ))
-        viewBinding.button.setOnClickListener {
-            rvAdapter.notifyDataSetChanged()
+        viewBinding.root.contentViewContainer.collectFloatViews()
+        viewBinding.root.contentViewContainer.setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
+            val detalY = (scrollY - oldScrollY)
+            val newHeight = (viewBinding.button.layoutParams.height-detalY).coerceIn(200, 825)
+            if(newHeight!=viewBinding.button.layoutParams.height){
+                viewBinding.button.updateLayoutParams {
+                    height = newHeight
+                }
+            }
         }
+//        findViewById<View>(R.id.button1)
+        CLog.d("oncreate")
+
     }
 }
 

@@ -12,29 +12,30 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="button" />
+            android:layout_height="300dp"
+            android:text="button"
+            android:tag="need_float"/>
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:text="11111111111111111111" />
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:text="222222222222222222"
             android:tag="need_float"/>
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button3"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:text="333333333333333333333" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyvler_view"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="3200dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/button" />
 
