@@ -7,6 +7,10 @@ abstract class BaseViewHolder<VI: BaseViewItem>(view: View) : RecyclerView.ViewH
 
     abstract fun onBindViewItem(item: VI)
 
+    open fun onBindViewItem(item: VI, payloads: MutableList<Any>){
+
+    }
+
     fun onAttachedToWindow(){
 
     }

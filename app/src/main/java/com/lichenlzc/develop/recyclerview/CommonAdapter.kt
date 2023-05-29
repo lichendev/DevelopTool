@@ -16,6 +16,11 @@ class CommonAdapter: RecyclerView.Adapter<BaseViewHolder<BaseViewItem>>() {
         notifyItemInserted(data.size-1)
     }
 
+    fun addItem(item: BaseViewItem, index: Int){
+        data.add(index, item)
+        notifyItemInserted(index)
+    }
+
     fun addItems(items: List<BaseViewItem>){
         val start = items.size-1
         data.addAll(items)
@@ -40,6 +45,18 @@ class CommonAdapter: RecyclerView.Adapter<BaseViewHolder<BaseViewItem>>() {
         holder.onBindViewItem(data[position])
     }
 
+    override fun onBindViewHolder(
+        holder: BaseViewHolder<BaseViewItem>,
+        position: Int,
+        payloads: MutableList<Any>
+    ) {
+        if(payloads.isNotEmpty()) {
+            holder.onBindViewItem(data[position], payloads)
+        }else{
+            onBindViewHolder(holder, position)
+        }
+    }
+
     override fun getItemCount(): Int {
         return data.size
     }
@@ -52,6 +69,10 @@ class CommonAdapter: RecyclerView.Adapter<BaseViewHolder<BaseViewItem>>() {
     override fun onViewDetachedFromWindow(holder: BaseViewHolder<BaseViewItem>) {
         super.onViewDetachedFromWindow(holder)
         holder.onDetachedFromWindow()
+    }
+
+    override fun onViewRecycled(holder: BaseViewHolder<BaseViewItem>) {
+        super.onViewRecycled(holder)
     }
 
     class ViewHolderFactory(val create: (view: View)->BaseViewHolder<BaseViewItem>){
