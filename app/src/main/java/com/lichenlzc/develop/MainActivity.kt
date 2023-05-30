@@ -11,5 +11,9 @@ class MainActivity: BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(viewBinding.root)
+        viewBinding.button.setOnClickListener {
+//            viewBinding.seekbar.isIndeterminate = true
+            viewBinding.seekbar.progress = 50
+        }
     }
 }
