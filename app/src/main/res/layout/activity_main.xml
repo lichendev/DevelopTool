@@ -12,8 +12,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ProgressBar
-        style="?android:attr/progressBarStyleHorizontal"
+    <com.lichenlzc.develop.MySeekBar
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:id="@+id/seekbar"
         android:layout_width="match_parent"
         android:layout_height="30dp"
@@ -21,8 +21,16 @@
         android:max="100"
         android:progressDrawable="@drawable/dr_prograss"
         android:thumb="@drawable/ic_android_black_24dp"
-        android:progress="10"
+        android:progress="100"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:src="@drawable/ic_android_black_24dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
