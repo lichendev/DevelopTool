@@ -31,6 +31,11 @@ class MySeekBar@JvmOverloads constructor (context: Context, attributes: Attribut
         invalidate()
     }
 
+    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+        CLog.d("onMeasure")
+    }
+
     fun setLightSpot(list: List<Float>){
         lightSpots.clear()
         lightSpots.addAll(list)

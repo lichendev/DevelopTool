@@ -17,37 +17,29 @@ import com.lichenlzc.develop.base.BaseActivity
 import com.lichenlzc.develop.databinding.ActivityMainBinding
 import com.lichenlzc.develop.log.CLog
 import java.security.Provider.Service
-import java.util.Hashtable
 
-@RequiresApi(Build.VERSION_CODES.S)
-class MainActivity: BaseActivity() {
+class MainActivity2: BaseActivity() {
 
     private val viewBinding by lazy { ActivityMainBinding.inflate(layoutInflater) }
 
-    val decoder by lazy { BigBitmapWrapper(this) }
+//    val decoder by lazy { BigBitmapWrapper(this) }
 
     private val liveData = MutableLiveData<Int>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(viewBinding.root)
+        viewBinding.button.text ="MainActivity2"
         viewBinding.button.setOnClickListener {
-            startActivity(Intent(this, MainActivity2::class.java))
-            it.postDelayed(object : Runnable{
-                override fun run() {
-                    CLog.d("requestLayout")
-                    viewBinding.seekbar.requestLayout()
-                }
-            },5000)
+            finish()
         }
-    }
-
-    override fun onStop() {
-        super.onStop()
-        CLog.d("onStop=${window.decorView.visibility}")
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
     }
 }
