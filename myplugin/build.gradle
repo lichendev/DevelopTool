@@ -1,0 +1,39 @@
+plugins {
+    id 'java-library'
+    id 'java-gradle-plugin'
+}
+
+gradlePlugin {
+    plugins {
+        create("simplePlugin") {
+            id = "com.lichenlzc.myplugin"
+            implementationClass = "com.lichenlzc.myplugin.MyClass"
+        }
+    }
+}
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_7
+    targetCompatibility = JavaVersion.VERSION_1_7
+}
+
+apply plugin: 'maven-publish'
+publishing {
+    //配置发布产物信息
+    publications {
+        //任务名称 "myPublication"
+        myPublication(MavenPublication) {
+            groupId 'com.lichenlzc'
+            artifactId 'plugin-test'
+            version '0.0.1'
+            //指明要发布的产物
+            artifact "$buildDir/libs/${project.name}.jar"
+        }
+    }
+
+    //配置发布仓库
+    repositories {
+        //使用默认的本地仓库
+        mavenLocal()
+        //也可以使用maven{url '地址'}指定仓库
+    }
+}

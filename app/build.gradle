@@ -54,3 +54,5 @@ dependencies {
     // 依赖androidx, 已升级AndroidX的项目集成下面的依赖
     implementation "com.bytedance.tools.codelocator:codelocator-core:2.0.3"
 }
+
+apply plugin: 'com.lichenlzc.myplugin'
