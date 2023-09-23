@@ -53,6 +53,74 @@ dependencies {
 
     // 依赖androidx, 已升级AndroidX的项目集成下面的依赖
     implementation "com.bytedance.tools.codelocator:codelocator-core:2.0.3"
+    implementation project(":mylibrary")
+
 }
 
 apply plugin: 'com.lichenlzc.myplugin'
+
+Logger mLogger = new Logger("timeCoast",project);
+gradle.taskGraph.afterTask { task ->;
+    if(task.project.getName()!=project.name){
+        return
+    }
+    StringBuffer taskDetails = new StringBuffer()
+    taskDetails << """-----task begin-------->;
+project:     $task.project 
+name:        $task.name 
+group:       $task.group 
+description: $task.description
+conv:        $task.convention.plugins
+inputs:
+"""
+    task.inputs.files.each{ it ->;
+        taskDetails << " ${it.absolutePath}\n"
+    }
+    taskDetails << "outputs:\n"
+    task.outputs.files.each{ it ->;
+        taskDetails << " ${it.absolutePath}\n"
+    }
+
+    taskDetails << "<------task end -------"
+
+    mLogger.log(taskDetails.toString());
+}
+
+class Logger {
+    File mFile;
+    Logger(String fileName,Project project) {
+        mFile = new File(project.getRootDir(), String.format("%s-%s.txt", fileName,project.getName()));
+        if(mFile.exists()){
+            mFile.delete()
+        }
+        try {
+            mFile.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    void clear() {
+        if (mFile != null) {
+            mFile.delete();
+        }
+    }
+    void log(String text) {
+        if (mFile != null) {
+            FileWriter fw = null;
+            try {
+                fw = new FileWriter(mFile, true);
+                fw.append(text + "\r\n");
+            } catch (IOException ignored) {
+            } finally {
+                if (fw != null) {
+                    try {
+                        fw.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+    }
+}

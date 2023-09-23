@@ -11,9 +11,12 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        jcenter()
+        gradlePluginPortal()
         maven { url "https://jitpack.io" }
     }
 }
 rootProject.name = "lcdevelop"
 include ':app'
 include ':myplugin'
+include ':mylibrary'

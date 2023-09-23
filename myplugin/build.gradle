@@ -12,8 +12,8 @@ gradlePlugin {
     }
 }
 java {
-    sourceCompatibility = JavaVersion.VERSION_1_7
-    targetCompatibility = JavaVersion.VERSION_1_7
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
 }
 
 apply plugin: 'maven-publish'
@@ -36,4 +36,7 @@ publishing {
         mavenLocal()
         //也可以使用maven{url '地址'}指定仓库
     }
+}
+dependencies {
+    compileOnly "com.android.tools.build:gradle:7.1.2"
 }
