@@ -16,3 +16,5 @@ dependencyResolutionManagement {
 }
 rootProject.name = "lcdevelop"
 include ':app'
+include ':mylibrary'
+include ':mylibrary2'
